@@ -1,0 +1,12 @@
+Prerequist:
+============
+1. pip install robotframework
+2. pip install --upgrade robotframework-seleniumlibrary
+3. download chromedriver.exe and set et in enviornmental variable.
+
+
+Logic:
+======
+1. Whenever, we add the video in favorite list, the class value got changed as plus and when we remove it from favorite list, then the class value will change to minus.
+2. Fetch the class attribute value in ${text} variable.
+3. Compare, if it is plus, then it is added in favorite list else it is not.

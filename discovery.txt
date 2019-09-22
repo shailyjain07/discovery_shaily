@@ -1,0 +1,46 @@
+*** Settings ***
+Documentation     Simple example using SeleniumLibrary.
+Library           SeleniumLibrary
+*** Variables ***
+${LOGIN URL}      https://go.discovery.com
+${LOGIN URL1}     https://go.discovery.com/tv-shows/apollo-the-forgotten-films/
+${BROWSER}        Chrome 
+
+*** Test Cases ***
+Valid Login
+    Open Browser To Login Page
+    Open Tvshow Browser
+ 
+
+*** Keywords ***
+Open Browser To Login Page
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Title Should Be    Discovery - Official Site
+    Maximize Browser Window
+    Execute JavaScript    window.scrollTo(0, 1000)
+    Click Element    css:#react-root > div > div.page-wrapper.app__pageWrapper > div.header-decorator > header > div.dscHeaderMain__topWrapper > div > nav > ul > li.dscHeaderMain__showsLink.dscHeaderMain__hideMobile
+    Sleep    5s
+    Click Element    css:#show-drop-desktop > ul > li:nth-child(12) > div > a
+    Sleep    5s
+    Click Element    css:#react-root > div > div.page-wrapper.app__pageWrapper > div.allShowsLayout__wrapper > main > section > div > div.allShowsGrid__tilesList > div:nth-child(20) > div > a > div > div.image-holder.imageHolder__main.showGridTile__imageHolder > picture > img
+
+Open Tvshow Browser
+	Open Browser    ${LOGIN URL1}    ${BROWSER}
+	sleep  5s
+	${text}    Get Element Attribute    css:#react-root > div > div.page-wrapper.app__pageWrapper > main > section.layout-section.ShowHero.layoutSection__main > div > div.showHero__showImage > div.showHero__showBrand.showHero__showLogoNoClips > div.my-favorites-button-container > span > i    attribute=Class
+	log  ${text}
+	${fav}  Set Variable  'flipIconCore__icon icon-plus'
+	log  ${fav}         
+	Run Keyword If  "${fav}" == "${text}"   log  Favorite 
+		  
+		
+	
+		
+    
+    
+
+
+     
+
+
+	
